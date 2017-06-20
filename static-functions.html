@@ -1,0 +1,59 @@
+<!doctype html><html><head><script type="text/javascript"> function Ball (color, radius) {
+	
+  	this.color = color;
+  	this.radius = radius;
+  
+}
+
+// instance method
+Ball.prototype.getArea = function () {
+	     // it delegates to the static method
+  return Ball.getArea(this.radius);
+
+};
+
+// static method
+Ball.getArea = function (radius) {
+    
+  return Math.PI * (Math.pow(radius, 2));
+  
+};
+  
+
+/////////////////////////////////////
+/////////////////////////////////////
+
+var blackBall = new Ball('black', 25);
+
+console.dir(blackBall);
+
+console.dir(blackBall.getArea());
+
+console.dir(Ball.prototype.getArea());
+
+console.dir(Ball.prototype.getArea.call( {radius: 45} ));
+
+console.dir(Ball.getArea( 10 ));
+
+/*
+// function invokation
+// "this" is the global object or "undefined" is strict mode (e.g. "use strict")
+Ball("blue");
+
+// method invokation
+// "this" is the containing object, window in this case
+window.Ball("blue");
+
+// new invokation
+// "this" is going to be a new Object instance, that 
+// inherits all the properties of the the function's "prototype" property
+new Ball("blue");
+
+// call/apply invokation
+// "this" is whatever is passed as first argument to call/apply
+// the difference between call and apply is that:
+// call takes literal arguments and apply takes an array of arguments
+Ball.call({}, "blue", 25);
+Ball.apply({}, ["blue", 25]);
+
+console.dir(window.color); */</script></head><body scroll="auto"></body></html>
